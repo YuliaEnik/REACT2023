@@ -9,3 +9,5 @@ class AboutUs extends React.Component {
     )
   };
 };
+
+export { AboutUs };

@@ -1,11 +1,22 @@
-import { Home } from './Pages/Home'
+import { Route, Routes } from 'react-router-dom';
+import { Home } from './Pages/Home';
+import { NotFound } from './Pages/NotFound';
+import { AboutUs } from './Pages/AboutUs';
+import { Layout } from './Components/Layout';
 
-function App() {
 
-
+function App(): JSX.Element {
   return (
-    <Home></Home>
-  )
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='/about' element={<AboutUs />} />
+          <Route path='*' element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
+  );
 }
 
 export default App
