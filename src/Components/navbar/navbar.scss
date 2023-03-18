@@ -30,9 +30,12 @@
 .link {
   text-decoration: none;
   list-style: none;
-  color: black;
+  color: rgb(14, 110, 129);
+  font-size: 1.5rem;
 }
 
 .active {
+  color: rgb(25, 98, 109);
+  font-style: italic;
   text-decoration: underline;
 }
