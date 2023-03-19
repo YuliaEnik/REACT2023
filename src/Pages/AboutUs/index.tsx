@@ -7,7 +7,7 @@ class AboutUs extends React.Component {
       About Us
     </h2>
     )
-  };
-};
+  }
+}
 
 export { AboutUs };

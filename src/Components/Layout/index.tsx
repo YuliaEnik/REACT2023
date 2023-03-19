@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Navbar } from '../navbar';
 import './layout.scss';
 
@@ -9,7 +9,7 @@ const Layout: React.FC = () => (
       <Navbar />
     </header>
     <main className='main'>
-      <Outlet />
+      <Outlet /> 
     </main>
   </>
 );

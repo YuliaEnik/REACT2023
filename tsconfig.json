@@ -22,7 +22,8 @@
   "include": [
     "./src/**/*",
     "styled.d.ts",
-    ".eslint.cjs"
+    ".eslint.cjs",
+    "vite.config.ts"
     ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

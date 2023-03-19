@@ -13,24 +13,25 @@ class Search extends React.Component<IProps, IState> {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    this.setState((state) => ({
-      ...state,
-      value: e.target.value,
-    }));
-  };
+  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+     this.setState({ value: event.currentTarget.value });
+  }
 
-  componentDidMount() {
-    const searchValue = localStorage.getItem('items');
+  componentDidMount(): void {
+    const searchValue: string | null = localStorage.getItem('items');
     if (searchValue) {
       this.setState({
         value: searchValue,
-      });
-    }
+      }) 
+    } 
   }
 
-  componentWillUnmount() {
-    localStorage.setItem('items', this.state.value);
+  componentWillUnmount(): void {
+    if (this.state.value) {
+      localStorage.setItem('items', this.state.value)
+    } this.setState ({
+        value: '',
+      })
   }
 
   render() {
@@ -39,7 +40,6 @@ class Search extends React.Component<IProps, IState> {
         <form className='search-form'>
           <input
             className='search-form_input'
-            type='text'
             placeholder='Search...'
             value={this.state.value}
             onChange={this.handleChange}

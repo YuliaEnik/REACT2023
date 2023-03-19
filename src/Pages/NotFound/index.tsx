@@ -1,5 +1,5 @@
-import './not-found.scss';
 import React from 'react';
+import './not-found.scss';
 
 class NotFound extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class NotFound extends React.Component {
       </div>
     </div>
     )
-  };
-};
+  }
+}
 
 export { NotFound };
