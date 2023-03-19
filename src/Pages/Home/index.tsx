@@ -1,19 +1,20 @@
-import './home.scss';
-import React from 'react';
-import { Search } from '../../Components/search';
-import { Card } from '../../Components/card';
-import { data, IData } from '../../Data/data';
+import "./home.scss";
+import React from "react";
+import { Search } from "../../Components/search";
+import { Card } from "../../Components/card";
+import { data, IData } from "../../Data/data";
 
-type IProps = {};
-class Home extends React.Component<IProps, IData[]> {
-  constructor(props: IProps) {
+class Home extends React.Component<unknown, IData[]> {
+  constructor(props: unknown) {
     super(props);
-    this.state = [{
-      author: '',
-      name: '',
-      year: '',
-      imageNum: 0,
-    }];
+    this.state = [
+      {
+        author: "",
+        name: "",
+        year: "",
+        imageNum: 0,
+      },
+    ];
   }
 
   render() {
