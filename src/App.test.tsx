@@ -4,11 +4,16 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import { Card } from "./Components/card";
 import { MemoryRouter } from "react-router-dom";
+import { Home } from "./Pages/Home";
+import { AboutUs } from "./Pages/AboutUs";
+import { describe, it } from "vitest";
+import { NotFound } from "Pages/NotFound";
 
-test("renders learn react link", () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App", () => {
+  test("it renders", () => {
+    render(<AboutUs />);
+    render(<Home />);
+  });
 });
 
 describe("App", () => {
