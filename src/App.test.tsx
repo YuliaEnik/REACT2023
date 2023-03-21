@@ -6,7 +6,6 @@ import { Card } from "./Components/card";
 import { MemoryRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { AboutUs } from "./Pages/AboutUs";
-import { NotFound } from "./Pages/NotFound";
 import { describe, it } from "vitest";
 
 describe("App", () => {
