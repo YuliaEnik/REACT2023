@@ -6,13 +6,24 @@ import { Card } from "./Components/card";
 import { MemoryRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { AboutUs } from "./Pages/AboutUs";
+import { NotFound } from "./Pages/NotFound";
 import { describe, it } from "vitest";
-import { NotFound } from "Pages/NotFound";
 
 describe("App", () => {
   test("it renders", () => {
     render(<AboutUs />);
     render(<Home />);
+  });
+});
+
+describe("NoFound", () => {
+  it("renders NoFound component", () => {
+    render(
+      <MemoryRouter initialEntries={["/jhhhhh"]}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(screen.getByTestId(/notFound/i)).toBeInTheDocument();
   });
 });
 
