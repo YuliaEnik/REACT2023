@@ -11,6 +11,11 @@ const Navbar: React.FC = () => (
         </NavLink>
       </li>
       <li className="nav-list_item">
+        <NavLink className="link" data-testingid="form-link" to="/forms">
+          Form
+        </NavLink>
+      </li>
+      <li className="nav-list_item">
         <NavLink className="link" data-testingid="about-link" to="/about">
           About Us
         </NavLink>
