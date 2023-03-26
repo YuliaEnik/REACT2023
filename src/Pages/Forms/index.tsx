@@ -5,7 +5,9 @@ import "./forms.scss";
 const FormPage: React.FC = () => {
   return (
     <div className="logIn-wrapper">
-      <h2 className="title">Welcome. Please make the form.</h2>
+      <h3 className="title">
+        <i>Welcome. Please make the form.</i>
+      </h3>
       <Form></Form>
     </div>
   );

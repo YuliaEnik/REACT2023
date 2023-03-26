@@ -1,12 +1,11 @@
 .form-wrapper {
-  width: 30%;
+  width: 25rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  gap: 1rem;
+  padding: 1rem;
+  gap: 0.5rem;
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.8);
-  border-radius: 10px;
   @media ( max-width: 640px ) {
     width: 90%;
     padding: 1rem;

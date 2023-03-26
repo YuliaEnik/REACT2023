@@ -1,7 +1,7 @@
 import "./home.scss";
 import React from "react";
 import { Search } from "../../Components/search";
-import { Card } from "../../Components/card";
+import { Card } from "../../Components/Card";
 import { data, IData } from "../../Data/data";
 
 class Home extends React.Component<unknown, IData[]> {

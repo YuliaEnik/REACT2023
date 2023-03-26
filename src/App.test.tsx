@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
-import { Card } from "./Components/card";
+import { Card } from "./Components/Card";
 import { MemoryRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { AboutUs } from "./Pages/AboutUs";
