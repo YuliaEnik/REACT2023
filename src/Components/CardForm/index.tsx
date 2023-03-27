@@ -13,6 +13,7 @@ class CardForm extends Component<IData, IState> {
   render() {
     return (
       <div className="card-form-wrapper" data-testid="cardForm">
+        <img className="img" src={this.props.file} alt="Image" />
         <p>
           <i>Name:</i> {this.props.name}
         </p>
@@ -24,9 +25,6 @@ class CardForm extends Component<IData, IState> {
         </p>
         <p>
           <i>Sex:</i> {this.props.gender}
-        </p>
-        <p>
-          <i>File:</i> {this.props.file}
         </p>
       </div>
     );

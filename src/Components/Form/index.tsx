@@ -54,6 +54,9 @@ class Form extends React.Component<FormProps, IFormState> {
       if (this.genderInputM.current) {
         data.gender = this.genderInputM.current.checked ? "male" : "female";
       }
+      if (this.fileInput.current?.files) {
+        data.file = URL.createObjectURL(this.fileInput.current.files[0]);
+      }
       this.setState({ message: "Information has been saved" });
       this.addCard(data);
       setTimeout(() => {
@@ -200,8 +203,13 @@ class Form extends React.Component<FormProps, IFormState> {
           </div>
           <div className="input-wrapper">
             <label className="form-line">
-              Choose file:
-              <input type="file" ref={this.fileInput} />
+              Choose image:
+              <input
+                type="file"
+                name="img"
+                accept="image/*"
+                ref={this.fileInput}
+              />
             </label>
             {this.state.errors.fileError ? (
               <p className="error">{this.state.errors.fileError}</p>
