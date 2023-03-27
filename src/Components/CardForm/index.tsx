@@ -1,36 +1,29 @@
 import React, { Component } from "react";
-import "./card-form.scss";
-
-type IProps = {
-  name: string;
-  date: string;
-  city: string;
-  sex: string;
-  file: string;
-};
+import { IData } from "../../Components/Form/types";
+import "./cardForm.scss";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type IState = {};
-class CardForm extends Component<IProps, IState> {
-  constructor(props: IProps) {
+class CardForm extends Component<IData, IState> {
+  constructor(props: IData) {
     super(props);
     this.state = {};
   }
 
   render() {
     return (
-      <div className="card-wrapper">
+      <div className="card-form-wrapper">
         <p>
           <i>Name:</i> {this.props.name}
         </p>
         <p>
-          <i>Date:</i> {this.props.date}
+          <i>Date:</i> {this.props.birthday}
         </p>
         <p>
-          <i>City:</i> {this.props.city}
+          <i>City:</i> {this.props.country}
         </p>
         <p>
-          <i>Sex:</i> {this.props.sex}
+          <i>Sex:</i> {this.props.gender}
         </p>
         <p>
           <i>File:</i> {this.props.file}

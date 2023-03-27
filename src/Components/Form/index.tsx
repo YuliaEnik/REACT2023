@@ -1,14 +1,6 @@
 import React from "react";
 import { Button } from "../Button";
-import {
-  IErrors,
-  IFormState,
-  Props,
-  IData,
-  FormData,
-  FormProps,
-} from "./types";
-//import { CardForm } from "../../Components/Card-form";
+import { IErrors, IFormState, IData, FormProps } from "./types";
 import "./form.scss";
 
 class Form extends React.Component<FormProps, IFormState> {
@@ -50,7 +42,6 @@ class Form extends React.Component<FormProps, IFormState> {
     e.preventDefault();
     if (this.validation()) {
       const data: IData = {};
-      //data.id = uuidv4();
       if (this.nameInput.current) {
         data.name = this.nameInput.current.value;
       }
@@ -123,7 +114,7 @@ class Form extends React.Component<FormProps, IFormState> {
   }
 
   addCard(card: IData) {
-    this.props.refreshCards(card);
+    this.props.createCardList(card);
   }
 
   resetForm() {
@@ -231,16 +222,7 @@ class Form extends React.Component<FormProps, IFormState> {
             <br />
           )}
         </form>
-        {/* {data.map((item: IData, index: number) => (
-          <CardForm
-            key={index}
-            name={item.name}
-            date={item.date}
-            city={item.citty}
-            sex={item.sex}
-            file={item.file}
-          ></CardForm>
-        ))} */}
+        <div></div>
       </>
     );
   }

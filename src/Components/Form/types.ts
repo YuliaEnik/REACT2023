@@ -29,5 +29,5 @@ export type FormData = {
 };
 
 export type FormProps = {
-  refreshCards: (card: IData) => void;
+  createCardList: (card: IData) => void;
 };
