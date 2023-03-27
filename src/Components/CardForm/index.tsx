@@ -12,7 +12,7 @@ class CardForm extends Component<IData, IState> {
 
   render() {
     return (
-      <div className="card-form-wrapper">
+      <div className="card-form-wrapper" data-testid="cardForm">
         <p>
           <i>Name:</i> {this.props.name}
         </p>

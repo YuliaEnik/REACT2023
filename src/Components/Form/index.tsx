@@ -132,7 +132,12 @@ class Form extends React.Component<FormProps, IFormState> {
           <div className="input-wrapper">
             <label className="form-line">
               Name:
-              <input type="input" className="input" ref={this.nameInput} />
+              <input
+                type="input"
+                placeholder="Enter your name..."
+                className="input"
+                ref={this.nameInput}
+              />
             </label>
             {this.state.errors.nameError ? (
               <p className="error">{this.state.errors.nameError}</p>
