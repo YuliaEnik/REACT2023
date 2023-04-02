@@ -1,44 +1,28 @@
 import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../Button";
 import { IErrors, IFormState, IData, FormProps } from "./types";
 import "./form.scss";
 
-class Form extends React.Component<FormProps, IFormState> {
-  formRef: React.RefObject<HTMLFormElement>;
-  nameInput: React.RefObject<HTMLInputElement>;
-  birthdayInput: React.RefObject<HTMLInputElement>;
-  countryInput: React.RefObject<HTMLSelectElement>;
-  genderInputM: React.RefObject<HTMLInputElement>;
-  genderInputF: React.RefObject<HTMLInputElement>;
-  agreeInput: React.RefObject<HTMLInputElement>;
-  fileInput: React.RefObject<HTMLInputElement>;
-
-  constructor(props: FormProps) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.formRef = React.createRef();
-    this.nameInput = React.createRef();
-    this.birthdayInput = React.createRef();
-    this.countryInput = React.createRef();
-    this.genderInputM = React.createRef();
-    this.genderInputF = React.createRef();
-    this.agreeInput = React.createRef();
-    this.fileInput = React.createRef();
-
-    this.state = {
-      message: "",
-      errors: {
-        nameError: "",
-        dateError: "",
-        countryError: "",
-        sexError: "",
-        agreeError: "",
-        fileError: "",
-      },
+function Form({ createCardList }: FormProps) {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit: SubmitHandler<IData> = (data) => {
+    console.log(data);
+    const cardData: IData = {
+      ...data,
+      //id: uuidv4(),
+      file: URL.createObjectURL(data.file[0]),
+      agree: "agree",
     };
-  }
-
-  handleSubmit(e: React.FormEvent) {
+    addCard(cardData);
+    reset();
+  };
+  /* handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (this.validation()) {
       const data: IData = {};
@@ -114,131 +98,135 @@ class Form extends React.Component<FormProps, IFormState> {
       errors: errors,
     });
     return isValid;
-  }
+  } */
 
-  addCard(card: IData) {
-    this.props.createCardList(card);
-  }
+  const addCard = (card: IData) => {
+    createCardList(card);
+  };
 
-  resetForm() {
-    this.formRef.current?.reset();
-  }
-
-  render() {
-    return (
-      <>
-        <form
-          className="form-wrapper"
-          onSubmit={this.handleSubmit}
-          ref={this.formRef}
-        >
-          <div className="input-wrapper">
-            <label className="form-line">
-              Name:
-              <input
-                type="input"
-                placeholder="Enter your name..."
-                className="input"
-                ref={this.nameInput}
-              />
-            </label>
-            {this.state.errors.nameError ? (
-              <p className="error">{this.state.errors.nameError}</p>
-            ) : (
-              <br />
-            )}
-          </div>
-          <div className="input-wrapper">
-            <label className="form-line">
-              Birthday:
-              <input type="date" className="input" ref={this.birthdayInput} />
-            </label>
-            {this.state.errors.dateError ? (
-              <p className="error">{this.state.errors.dateError}</p>
-            ) : (
-              <br />
-            )}
-          </div>
-          <div className="input-wrapper">
-            <label className="form-line">
-              Country:
-              <select className="input" ref={this.countryInput}>
-                <option value=""> </option>
-                <option value="Belarus"> Belarus </option>
-                <option value="USA"> USA </option>
-                <option value="Poland"> Poland </option>
-                <option value="Germany"> Germany </option>
-              </select>
-            </label>
-            {this.state.errors.countryError ? (
-              <p className="error">{this.state.errors.countryError}</p>
-            ) : (
-              <br />
-            )}
-          </div>
-          <div className="input-wrapper">
-            <label className="form-line">
-              Male
-              <input
-                type="radio"
-                name="gender"
-                ref={this.genderInputM}
-                value="male"
-              />
-            </label>
-            <label className="form-line">
-              Female
-              <input
-                type="radio"
-                name="gender"
-                ref={this.genderInputF}
-                value="female"
-              />
-            </label>
-            {this.state.errors.sexError ? (
-              <p className="error">{this.state.errors.sexError}</p>
-            ) : (
-              <br />
-            )}
-          </div>
-          <div className="input-wrapper">
-            <label className="form-line">
-              Choose image:
-              <input
-                type="file"
-                name="img"
-                accept="image/*"
-                ref={this.fileInput}
-              />
-            </label>
-            {this.state.errors.fileError ? (
-              <p className="error">{this.state.errors.fileError}</p>
-            ) : (
-              <br />
-            )}
-          </div>
-          <div className="input-wrapper">
-            <label className="form-line">
-              I agree:
-              <input type="checkbox" ref={this.agreeInput} />
-            </label>
-            {this.state.errors.agreeError ? (
-              <p className="error">{this.state.errors.agreeError}</p>
-            ) : (
-              <br />
-            )}
-          </div>
-          <Button>Submit</Button>
-          {this.state.message ? (
-            <p className="form-message">{this.state.message}</p>
+  return (
+    <>
+      <form className="form-wrapper" onSubmit={handleSubmit(onSubmit)}>
+        <div className="input-wrapper">
+          <label className="form-line">
+            Name:
+            <input
+              type="input"
+              placeholder="Enter your name..."
+              className="input"
+              autoComplete="off"
+              {...register("name", {
+                required: 'The name should contain 1 or more letters"',
+              })}
+            />
+          </label>
+          {errors.name ? (
+            <p className="error">{errors.name.message}</p>
           ) : (
             <br />
           )}
-        </form>
-        <div></div>
-      </>
-    );
-  }
+        </div>
+        <div className="input-wrapper">
+          <label className="form-line">
+            Birthday:
+            <input
+              type="date"
+              className="input"
+              {...register("date", {
+                required: "Choose date",
+              })}
+            />
+          </label>
+          {errors.date ? (
+            <p className="error">{errors.date.message}</p>
+          ) : (
+            <br />
+          )}
+        </div>
+        <div className="input-wrapper">
+          <label className="form-line">
+            Country:
+            <select
+              className="input"
+              {...register("country", { required: "Enter country" })}
+            >
+              <option value=""> </option>
+              <option value="Belarus"> Belarus </option>
+              <option value="USA"> USA </option>
+              <option value="Poland"> Poland </option>
+              <option value="Germany"> Germany </option>
+            </select>
+          </label>
+          {errors.country ? (
+            <p className="error">{errors.country.message}</p>
+          ) : (
+            <br />
+          )}
+        </div>
+        <div className="input-wrapper">
+          <label className="form-line">
+            Male
+            <input
+              type="radio"
+              {...register("gender", {
+                required: "Choose your gender",
+              })}
+              value="male"
+            />
+          </label>
+          <label className="form-line">
+            Female
+            <input
+              type="radio"
+              {...register("gender", {
+                required: "Choose your gender",
+              })}
+              value="female"
+            />
+          </label>
+          {errors.gender ? (
+            <p className="error">{errors.gender.message}</p>
+          ) : (
+            <br />
+          )}
+        </div>
+        <div className="input-wrapper">
+          <label className="form-line">
+            Choose image:
+            <input
+              type="file"
+              accept="image/*"
+              {...register("file", { required: "Choosse a file" })}
+            />
+          </label>
+          {errors.file ? (
+            <p className="error">{errors.file.message}</p>
+          ) : (
+            <br />
+          )}
+        </div>
+        <div className="input-wrapper">
+          <label className="form-line">
+            I agree:
+            <input
+              type="checkbox"
+              {...register("agree", {
+                required: "You need to agree",
+              })}
+            />
+          </label>
+          {errors.agree ? (
+            <p className="error">{errors.agree.message}</p>
+          ) : (
+            <br />
+          )}
+        </div>
+        <Button>Submit</Button>
+        {message ? <p className="form-message">{message}</p> : <br />}
+      </form>
+      <div></div>
+    </>
+  );
 }
 
 export { Form };

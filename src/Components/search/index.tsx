@@ -1,53 +1,36 @@
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import "./search.scss";
 
 type IState = { value: string };
 
-class Search extends React.Component<unknown, IState> {
-  constructor(props: unknown) {
-    super(props);
-    this.state = {
-      value: "",
+function Search() {
+  const [data, setData] = useState(localStorage.getItem("items") || "");
+
+  const value = useRef(data);
+
+  useEffect(() => {
+    return () => {
+      localStorage.setItem("items", value.current);
     };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  }, []);
 
-  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ value: event.currentTarget.value });
-  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setData(event.currentTarget.value);
+    value.current = event.target.value;
+  };
 
-  componentDidMount(): void {
-    const searchValue: string | null = localStorage.getItem("items");
-    if (searchValue) {
-      this.setState({
-        value: searchValue,
-      });
-    }
-  }
-
-  componentWillUnmount(): void {
-    if (this.state.value) {
-      localStorage.setItem("items", this.state.value);
-    }
-    this.setState({
-      value: "",
-    });
-  }
-
-  render() {
-    return (
-      <div className="search">
-        <form className="search-form">
-          <input
-            className="search-form_input"
-            placeholder="Search..."
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="search">
+      <form className="search-form">
+        <input
+          className="search-form_input"
+          placeholder="Search..."
+          value={data}
+          onChange={handleChange}
+        />
+      </form>
+    </div>
+  );
 }
 
 export { Search };
