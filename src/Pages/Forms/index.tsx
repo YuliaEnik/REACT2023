@@ -1,33 +1,25 @@
-import React from "react";
+import { useState } from "react";
 import { Form } from "../../Components/Form";
-import { Props, IData, FormData } from "../../Components/Form/types";
+import { IData, FormData } from "../../Components/Form/types";
 import { FormCardList } from "./../../Components/CardFormList";
 import "./forms.scss";
 
-class FormPage extends React.Component<Props, FormData> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { cards: [] };
-  }
+function FormPage() {
+  const [cards, setCard] = useState<FormData | []>([]);
 
-  createCardList(card: IData) {
-    this.setState((prevState: FormData) => ({
-      cards: [...prevState.cards, card],
-    }));
-  }
-  render() {
-    return (
-      <div className="logIn-wrapper">
-        <h3 className="title">
-          <i>Welcome. Please make the form.</i>
-        </h3>
-        <Form
-          createCardList={(card: IData) => this.createCardList(card)}
-        ></Form>
-        <FormCardList cards={this.state.cards}></FormCardList>
-      </div>
-    );
-  }
+  const createCardList = (card: IData) => {
+    setCard((cards: FormData) => [...cards, card]);
+  };
+
+  return (
+    <div className="logIn-wrapper">
+      <h3 className="title">
+        <i>Welcome. Please make the form.</i>
+      </h3>
+      <Form createCardList={(card: IData) => createCardList(card)} />
+      <FormCardList cards={cards} />
+    </div>
+  );
 }
 
 export { FormPage };

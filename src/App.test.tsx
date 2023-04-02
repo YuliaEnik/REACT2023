@@ -9,7 +9,6 @@ import { AboutUs } from "./Pages/AboutUs";
 import { describe, it, vi } from "vitest";
 import { Form } from "./Components/Form";
 import { CardForm } from "./Components/CardForm";
-import { FormCardList } from "Components/CardFormList";
 
 describe("App", () => {
   test("it renders", () => {
@@ -70,15 +69,6 @@ describe("Form", () => {
     expect(screen.getByPlaceholderText(/Enter your name/i)).toBeInTheDocument();
   });
 });
-
-const data = [
-  {
-    id: "1",
-    name: "lll",
-    birthday: "2023.03.01",
-    country: "USA",
-  },
-];
 
 describe("CardForm", () => {
   it("renders CardForm component", () => {

@@ -24,9 +24,7 @@ export interface IData {
   file?: string;
 }
 
-export type FormData = {
-  cards: IData[];
-};
+export type FormData = IData[];
 
 export type FormProps = {
   createCardList: (card: IData) => void;

@@ -3,7 +3,7 @@ import { Search } from "../../Components/search";
 import { Card } from "../../Components/Card";
 import { data, IData } from "../../Data/data";
 
-export function Home(): JSX.Element {
+function Home(): JSX.Element {
   return (
     <div className="cards-page">
       <Search />
@@ -19,3 +19,5 @@ export function Home(): JSX.Element {
     </div>
   );
 }
+
+export { Home };

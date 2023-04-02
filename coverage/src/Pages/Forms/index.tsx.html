@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.42% </span>
+                <span class="strong">32% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/33</span>
+                <span class='fraction'>8/25</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.42% </span>
+                <span class="strong">32% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/33</span>
+                <span class='fraction'>8/25</span>
             </div>
         
             
@@ -88,17 +88,7 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -107,13 +97,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -128,38 +113,29 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from "react";
 import { Form } from "../../Components/Form";
-import { Props, IData, FormData } from "../../Components/Form/types";
+import { IData, FormData } from "../../Components/Form/types";
 import { FormCardList } from "./../../Components/CardFormList";
 import "./forms.scss";
 &nbsp;
-class FormPage extends React.Component&lt;Props, FormData&gt; {
-<span class="fstat-no" title="function not covered" >  constructor(props: Props) {</span>
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.state = { cards: [] };</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-&nbsp;
-<span class="fstat-no" title="function not covered" >  createCardList(card: IData) {</span>
-<span class="cstat-no" title="statement not covered" >    this.setState((prevState: FormData) =&gt; ({</span>
-<span class="cstat-no" title="statement not covered" >      cards: [...prevState.cards, card],</span>
-<span class="cstat-no" title="statement not covered" >    }));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="fstat-no" title="function not covered" >  render() {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="logIn-wrapper"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;h3 className="title"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;i&gt;Welcome. Please make the form.&lt;/i&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/h3&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Form</span>
-<span class="cstat-no" title="statement not covered" >          createCardList={(card: IData) =&gt; this.createCardList(card)}</span>
-<span class="cstat-no" title="statement not covered" >        &gt;&lt;/Form&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;FormCardList cards={this.state.cards}&gt;&lt;/FormCardList&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-}
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function FormPage() {</span></span>
+<span class="cstat-no" title="statement not covered" >  const [cards, setCard] = useState&lt;FormData | []&gt;([]);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const createCardList = (card: IData) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setCard((cards: FormData) =&gt; [...cards, card]);</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div className="logIn-wrapper"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;h3 className="title"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;i&gt;Welcome. Please make the form.&lt;/i&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/h3&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Form createCardList={(card: IData) =&gt; createCardList(card)} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;FormCardList cards={cards} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 export { FormPage };
 &nbsp;</pre></td></tr></table></pre>
@@ -169,7 +145,7 @@ export { FormPage };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-27T16:38:06.643Z
+                at 2023-04-02T16:27:58.417Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
