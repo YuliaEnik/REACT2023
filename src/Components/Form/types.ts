@@ -29,3 +29,12 @@ export type FormData = IData[];
 export type FormProps = {
   createCardList: (card: IData) => void;
 };
+
+export interface IDataForm {
+  name: string;
+  birthday: string;
+  country: string;
+  gender: string;
+  agree: string;
+  file: FileList;
+}

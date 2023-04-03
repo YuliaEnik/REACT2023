@@ -6,6 +6,7 @@ import { Card } from "./Components/Card";
 import { MemoryRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { AboutUs } from "./Pages/AboutUs";
+import { FormPage } from "./Pages/Forms";
 import { describe, it, vi } from "vitest";
 import { Form } from "./Components/Form";
 import { CardForm } from "./Components/CardForm";
@@ -14,6 +15,7 @@ describe("App", () => {
   test("it renders", () => {
     render(<AboutUs />);
     render(<Home />);
+    render(<FormPage />);
   });
 });
 

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitestun",
+    "test": "vitest --coverage",
     "coverage": "vitest run --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext js,jsx,ts,tsx --fix"

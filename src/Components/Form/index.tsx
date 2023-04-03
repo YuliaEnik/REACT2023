@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../Button";
-import { IData, FormProps } from "./types";
+import { IData, IDataForm, FormProps } from "./types";
 import "./form.scss";
 
 function Form({ createCardList }: FormProps) {
@@ -11,13 +11,13 @@ function Form({ createCardList }: FormProps) {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IData>({ mode: "onSubmit", reValidateMode: "onSubmit" });
+  } = useForm<IDataForm>({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
-  const onSubmit: SubmitHandler<IData> = (data) => {
+  const onSubmit: SubmitHandler<IDataForm> = (data) => {
     console.log(data);
     const cardData: IData = {
       ...data,
-      //file: URL.createObjectURL(data.file[0]),
+      file: URL.createObjectURL(data.file[0]),
       agree: "agree",
     };
     setSavedMessage("Information has been saved");
