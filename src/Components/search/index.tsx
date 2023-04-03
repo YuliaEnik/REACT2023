@@ -1,22 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import "./search.scss";
 
-type IState = { value: string };
-
 function Search() {
-  const [data, setData] = useState(localStorage.getItem("items") || "");
+  const [data, setData] = useState(localStorage.getItem("item") || "");
 
-  const value = useRef(data);
+  const refData = useRef(data);
 
   useEffect(() => {
     return () => {
-      localStorage.setItem("items", value.current);
+      localStorage.setItem("item", refData.current);
     };
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData(event.currentTarget.value);
-    value.current = event.target.value;
+    refData.current = event.target.value;
   };
 
   return (

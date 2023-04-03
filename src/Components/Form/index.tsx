@@ -1,105 +1,33 @@
-import React from "react";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../Button";
-import { IErrors, IFormState, IData, FormProps } from "./types";
+import { IData, FormProps } from "./types";
 import "./form.scss";
 
 function Form({ createCardList }: FormProps) {
+  const [savedMessage, setSavedMessage] = useState("");
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<IData>({ mode: "onSubmit", reValidateMode: "onSubmit" });
+
   const onSubmit: SubmitHandler<IData> = (data) => {
     console.log(data);
     const cardData: IData = {
       ...data,
-      //id: uuidv4(),
-      file: URL.createObjectURL(data.file[0]),
+      //file: URL.createObjectURL(data.file[0]),
       agree: "agree",
     };
+    setSavedMessage("Information has been saved");
+    setTimeout(() => {
+      setSavedMessage("");
+    }, 2000);
+
     addCard(cardData);
     reset();
   };
-  /* handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (this.validation()) {
-      const data: IData = {};
-      if (this.nameInput.current) {
-        data.name = this.nameInput.current.value;
-      }
-      if (this.birthdayInput.current) {
-        data.birthday = this.birthdayInput.current.value;
-      }
-      if (this.countryInput.current) {
-        data.country = this.countryInput.current.value;
-      }
-      if (this.genderInputM.current) {
-        data.gender = this.genderInputM.current.checked ? "male" : "female";
-      }
-      if (this.fileInput.current?.files) {
-        data.file = URL.createObjectURL(this.fileInput.current.files[0]);
-      }
-      this.setState({ message: "Information has been saved" });
-      this.addCard(data);
-      setTimeout(() => {
-        this.setState({ message: "" });
-      }, 2000);
-
-      this.resetForm();
-    }
-  }
-  validation() {
-    let isValid = true;
-    const errors: IErrors = {
-      nameError: "",
-      dateError: "",
-      countryError: "",
-      sexError: "",
-      agreeError: "",
-      fileError: "",
-    };
-
-    if (
-      !this.nameInput.current?.value ||
-      !/^[a-zA-Zа-яА-Я]+$/.test(this.nameInput.current.value)
-    ) {
-      isValid = false;
-      errors.nameError = "The name should contain 1 or more letters";
-    }
-    if (!this.birthdayInput.current?.value) {
-      isValid = false;
-      errors.dateError = "Choose date";
-    } else if (new Date(this.birthdayInput.current?.value) > new Date()) {
-      isValid = false;
-      errors.dateError = "Date of Birth cannot be more than today's date";
-    }
-    if (!this.countryInput.current?.value) {
-      isValid = false;
-      errors.countryError = "Enter country";
-    }
-    if (
-      !this.genderInputM.current?.checked &&
-      !this.genderInputF.current?.checked
-    ) {
-      isValid = false;
-      errors.sexError = "Choose your gender";
-    }
-    if (!this.fileInput.current?.value) {
-      isValid = false;
-      errors.fileError = "Choosse a file";
-    }
-    if (!this.agreeInput.current?.checked) {
-      isValid = false;
-      errors.agreeError = "You need to agree";
-    }
-    this.setState({
-      errors: errors,
-    });
-    return isValid;
-  } */
-
   const addCard = (card: IData) => {
     createCardList(card);
   };
@@ -132,13 +60,13 @@ function Form({ createCardList }: FormProps) {
             <input
               type="date"
               className="input"
-              {...register("date", {
+              {...register("birthday", {
                 required: "Choose date",
               })}
             />
           </label>
-          {errors.date ? (
-            <p className="error">{errors.date.message}</p>
+          {errors.birthday ? (
+            <p className="error">{errors.birthday.message}</p>
           ) : (
             <br />
           )}
@@ -222,7 +150,7 @@ function Form({ createCardList }: FormProps) {
           )}
         </div>
         <Button>Submit</Button>
-        {message ? <p className="form-message">{message}</p> : <br />}
+        {savedMessage ? <p className="form-message">{savedMessage}</p> : <br />}
       </form>
       <div></div>
     </>
