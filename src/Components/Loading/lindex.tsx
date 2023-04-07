@@ -1,4 +1,4 @@
-import { CardApiList } from "../../Components/CardApiList";
+//import { CardApiList } from "../../Components/CardApiList";
 
 /* export function Loading(CardApiList) {
   return function WihLoadingComponent({ isLoading, ...props }) {
