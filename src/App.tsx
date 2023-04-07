@@ -5,7 +5,7 @@ import { AboutUs } from "./Pages/AboutUs";
 import { FormPage } from "./Pages/Forms";
 import { Layout } from "./Components/Layout";
 
-function App(): JSX.Element {
+export function App(): JSX.Element {
   return (
     <>
       <Routes>
@@ -20,5 +20,3 @@ function App(): JSX.Element {
     </>
   );
 }
-
-export default App;

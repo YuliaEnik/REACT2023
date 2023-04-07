@@ -4,7 +4,7 @@ import { Button } from "../Button";
 import { IData, IDataForm, FormProps } from "./types";
 import "./form.scss";
 
-function Form({ createCardList }: FormProps) {
+export function Form({ createCardList }: FormProps) {
   const [savedMessage, setSavedMessage] = useState("");
   const {
     register,
@@ -14,7 +14,6 @@ function Form({ createCardList }: FormProps) {
   } = useForm<IDataForm>({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
   const onSubmit: SubmitHandler<IDataForm> = (data) => {
-    console.log(data);
     const cardData: IData = {
       ...data,
       file: URL.createObjectURL(data.file[0]),
@@ -156,5 +155,3 @@ function Form({ createCardList }: FormProps) {
     </>
   );
 }
-
-export { Form };

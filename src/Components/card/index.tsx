@@ -3,7 +3,7 @@ import "./card.scss";
 
 export function Card(props: IData): JSX.Element {
   return (
-    <div className="card-wrapper" data-testid="card">
+    <li className="card-wrapper" data-testid="card">
       <img src={`images/${props.imageNum}.jpg`} alt={props.name} />
       <h3>
         Author: <i>{props.author}</i>
@@ -14,6 +14,6 @@ export function Card(props: IData): JSX.Element {
       <h3>
         Year: <i>{props.year}</i>
       </h3>
-    </div>
+    </li>
   );
 }

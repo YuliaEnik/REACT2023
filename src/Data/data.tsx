@@ -5,7 +5,7 @@ export interface IData {
   imageNum: number;
 }
 
-const data: IData[] = [
+export const data: IData[] = [
   {
     author: "Pavel Fedotov",
     name: "Major's Courtship",
@@ -79,5 +79,3 @@ const data: IData[] = [
     imageNum: 11,
   },
 ];
-
-export { data };

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.scss";
 
-const Navbar: React.FC = () => (
+export const Navbar: React.FC = () => (
   <nav className="nav">
     <ul className="nav-list">
       <li className="nav-list_item">
@@ -23,5 +23,3 @@ const Navbar: React.FC = () => (
     </ul>
   </nav>
 );
-
-export { Navbar };

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./search.scss";
 
-function Search() {
+export function Search() {
   const [data, setData] = useState(localStorage.getItem("item") || "");
 
   const refData = useRef(data);
@@ -30,5 +30,3 @@ function Search() {
     </div>
   );
 }
-
-export { Search };

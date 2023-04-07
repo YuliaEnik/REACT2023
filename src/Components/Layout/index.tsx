@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../navbar";
+import { Navbar } from "../Navbar";
 import "./layout.scss";
 
-const Layout: React.FC = () => (
+export const Layout: React.FC = () => (
   <>
     <header className="header">
       <Navbar />
@@ -13,5 +13,3 @@ const Layout: React.FC = () => (
     </main>
   </>
 );
-
-export { Layout };

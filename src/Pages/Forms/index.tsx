@@ -4,11 +4,11 @@ import { IData, FormData } from "../../Components/Form/types";
 import { FormCardList } from "./../../Components/CardFormList";
 import "./forms.scss";
 
-function FormPage() {
-  const [cards, setCard] = useState<FormData | []>([]);
+export function FormPage() {
+  const [cards, setCards] = useState<FormData>([]);
 
   const createCardList = (card: IData) => {
-    setCard((cards: FormData) => [...cards, card]);
+    setCards((cards: FormData) => [...cards, card]);
   };
 
   return (
@@ -21,5 +21,3 @@ function FormPage() {
     </div>
   );
 }
-
-export { FormPage };
