@@ -1,0 +1,58 @@
+.form-wrapper {
+  width: 26rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.8);
+  @media ( max-width: 640px ) {
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
+.form-line {
+  display: flex;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: end;
+}
+
+.input {
+  width: 80%;
+  padding: .3rem 1rem;
+  border: 0.01px solid;
+  border-radius: 10px;
+  outline: none;
+  outline-offset: none;
+  transition: all 0.8s;
+  cursor: pointer;
+  &:focus {
+    transform: scale(1.02);
+  }
+  &:active,
+  :hover,
+  :focus {
+    outline: none;
+    outline-offset: none;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+}
+
+.form-message {
+  color: green;
+  font-size: 0.8rem;
+}
