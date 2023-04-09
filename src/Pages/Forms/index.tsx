@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form } from "../../Components/Form";
 import { IData, FormData } from "../../Components/Form/types";
 import { FormCardList } from "./../../Components/CardFormList";
-import "./forms.scss";
+import "./style.scss";
 
 export function FormPage() {
   const [cards, setCards] = useState<FormData>([]);

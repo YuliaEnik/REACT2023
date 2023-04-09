@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../Button";
 import { IData, IDataForm, FormProps } from "./types";
-import "./form.scss";
+import "./style.scss";
 
 export function Form({ createCardList }: FormProps) {
   const [savedMessage, setSavedMessage] = useState("");

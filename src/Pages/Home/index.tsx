@@ -1,24 +1,30 @@
-import "./home.scss";
 import { useEffect, useState } from "react";
 import { Search } from "../../Components/Search";
-import { IData } from "../../Data/data";
-import { Card } from "../../Components/Card";
-//import { Loading } from "../../Components/Loading";
+import { Card, IData } from "../../Components/Card";
+import "./style.scss";
+import { Modal } from "../../Components/Modal";
 
 interface IDataApi {
-  loading: boolean;
-  repos: IData[] | null;
+  loading?: boolean;
+  repos?: IData[] | null;
 }
 
 export function Home(): JSX.Element {
-  //const ListLoading = Loading(List);
   const [appState, setAppState] = useState<IDataApi>({
     loading: false,
     repos: null,
   });
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const closeModal = () => {
+    setIsActive(false);
+  };
+  const openModal = () => {
+    setIsActive(true);
+  };
+
   useEffect(() => {
-    //setAppState({ loading: true });
-    const apiUrl = "https://api.artic.edu/api/v1/artworks?";
+    setAppState({ loading: true });
+    const apiUrl = "https://api.artic.edu/api/v1/artworks";
     fetch(apiUrl)
       .then((res) => res.json())
       .then((repos) => {
@@ -29,13 +35,14 @@ export function Home(): JSX.Element {
   return (
     <div className="cards-page">
       <Search />
-      <div className="cards-wrapper">
-        {!appState.repos ? (
-          <div>No Data</div>
-        ) : (
-          appState.repos.map((data: IData) => <Card {...data} key={data.id} />)
-        )}
-      </div>
+      <ul className="cards-wrapper">
+        {appState.loading && <p className="loading">Loading...</p>}
+        {appState.repos &&
+          appState.repos.map((data: IData) => (
+            <Card {...data} key={data.id} openModal={openModal} />
+          ))}
+      </ul>
+      <Modal isActive={isActive} closeModal={closeModal}></Modal>
     </div>
   );
 }

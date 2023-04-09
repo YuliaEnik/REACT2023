@@ -1,9 +1,17 @@
-import { IData } from "../../Data/data";
-import "./card.scss";
+import "./style.scss";
+
+export interface IData {
+  id: number;
+  title: string;
+  artist_title: string;
+  date_display: string;
+  image_id: string;
+  openModal: () => void;
+}
 
 export function Card(props: IData): JSX.Element {
   return (
-    <li className="card-wrapper" data-testid="card">
+    <li className="card-wrapper" data-testid="card" onClick={props.openModal}>
       <img
         src={`https://www.artic.edu/iiif/2/${props.image_id}/full/843,/0/default.jpg`}
         alt={props.title}

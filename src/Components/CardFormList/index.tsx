@@ -1,6 +1,6 @@
 import { CardForm } from "./../CardForm";
 import { FormData } from "./../Form/types";
-import "./cardList.scss";
+import "./style.scss";
 
 export type FormCardsProps = { cards: FormData };
 

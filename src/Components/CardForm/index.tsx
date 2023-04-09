@@ -1,5 +1,5 @@
 import { IData } from "../../Components/Form/types";
-import "./cardForm.scss";
+import "./style.scss";
 
 export function CardForm(props: IData): JSX.Element {
   return (
