@@ -6,12 +6,13 @@ export interface IData {
   artist_title: string;
   date_display: string;
   image_id: string;
-  openModal: () => void;
+  onClick?: () => void;
+  isActive: boolean;
 }
 
 export function Card(props: IData): JSX.Element {
   return (
-    <li className="card-wrapper" data-testid="card" onClick={props.openModal}>
+    <li className="card-wrapper" data-testid="card" onClick={props.onClick}>
       <img
         src={`https://www.artic.edu/iiif/2/${props.image_id}/full/843,/0/default.jpg`}
         alt={props.title}
