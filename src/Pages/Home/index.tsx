@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Search } from "../../Components/Search";
 import { Card, IData } from "../../Components/Card";
-import "./style.scss";
 import { Modal } from "../../Components/Modal";
-import { CardModal, IModalData } from "../../Components/CardModal";
-
-interface IDataApi {
-  loading?: boolean;
-  repos?: IData[] | null;
-}
-interface IDataModal {
-  loading?: boolean;
-  repos?: IModalData[] | null;
-}
+import { CardModal } from "../../Components/CardModal";
+import { getURL } from "../../Api";
+import { IDataApi, IDataModal } from "./types";
+import "./style.scss";
 
 export function Home(): JSX.Element {
   const [appState, setAppState] = useState<IDataApi>({
@@ -24,6 +17,38 @@ export function Home(): JSX.Element {
     repos: null,
   });
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState(
+    localStorage.getItem("item") || ""
+  );
+
+  const getApi = async () => {
+    setAppState({ loading: true });
+    try {
+      const repos = await getURL(searchValue);
+      setAppState({
+        loading: false,
+        repos: repos.data,
+      });
+    } catch (error) {
+      setAppState({ loading: false });
+    }
+  };
+
+  const refData = useRef(searchValue);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+    refData.current = event.target.value;
+  };
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    localStorage.setItem("search", refData.current || "");
+    getApi();
+  };
+  useEffect(() => {
+    setAppState({ loading: true });
+    getApi();
+  }, []);
+
   const closeModal = () => {
     setIsActive(false);
   };
@@ -31,20 +56,6 @@ export function Home(): JSX.Element {
     setIsActive(true);
     showDataModal(id);
   };
-
-  useEffect(() => {
-    setAppState({ loading: true });
-    const apiUrl = "https://api.artic.edu/api/v1/artworks";
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((repos) => {
-        setAppState({
-          loading: false,
-          repos: repos.data,
-        });
-      });
-  }, [setAppState]);
-
   const showDataModal = (id: number) => {
     setModalState({ loading: true });
     const apiUrl = `https://api.artic.edu/api/v1/artworks/${id}`;
@@ -54,9 +65,10 @@ export function Home(): JSX.Element {
         setModalState({ loading: false, repos: repos.data });
       });
   };
+
   return (
     <div className="cards-page">
-      <Search />
+      <Search onSubmit={handleFormSubmit} onChange={handleChange} />
       <ul className="cards-wrapper">
         {appState.loading && <p className="loading">Loading...</p>}
         {appState.repos &&

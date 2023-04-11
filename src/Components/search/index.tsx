@@ -1,48 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import { getURL } from "./../../Api";
+import { e } from "vitest/dist/types-fafda418";
 import "./style.scss";
 
-export function Search() {
-  const [data, setData] = useState(localStorage.getItem("item") || "");
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const refData = useRef(data);
+export interface ISearch {
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
 
-  const getApi = async () => {
-    setIsLoading(true);
-    setTimeout(async () => {
-      try {
-        const data = await getURL(refData.current);
-        setItems(data);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-      }
-    }, 1000);
-  };
-  useEffect(() => {
-    setIsLoading(true);
-    getApi();
-  }, []);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData(event.currentTarget.value);
-    refData.current = event.target.value;
-  };
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    localStorage.setItem("search", refData.current || "");
-    getApi();
-  };
-
+export function Search(props: ISearch) {
   return (
     <div className="search">
-      <form className="search-form" onSubmit={handleFormSubmit}>
+      <form className="search-form" onSubmit={props.onSubmit}>
         <input
           className="search-form_input"
           placeholder="Search..."
-          value={data}
-          onChange={handleChange}
+          value={props.value}
+          onChange={props.onChange}
         />
       </form>
     </div>

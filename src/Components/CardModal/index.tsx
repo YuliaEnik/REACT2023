@@ -1,6 +1,6 @@
 import "./style.scss";
 
-export interface IModalData {
+export interface IModalCard {
   id?: number;
   title?: string;
   artist_title?: string;
@@ -12,7 +12,7 @@ export interface IModalData {
   category_titles?: string;
 }
 
-export function CardModal(props: IModalData): JSX.Element {
+export function CardModal(props: IModalCard): JSX.Element {
   return (
     <li>
       <img
