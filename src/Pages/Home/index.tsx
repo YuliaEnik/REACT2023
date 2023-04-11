@@ -18,7 +18,7 @@ export function Home(): JSX.Element {
   });
   const [isActive, setIsActive] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState(
-    localStorage.getItem("item") || ""
+    localStorage.getItem("search") || ""
   );
 
   const getApi = async () => {
