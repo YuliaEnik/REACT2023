@@ -1,4 +1,3 @@
-import { e } from "vitest/dist/types-fafda418";
 import "./style.scss";
 
 export interface ISearch {

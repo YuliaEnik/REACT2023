@@ -38,11 +38,13 @@ export function Home(): JSX.Element {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
     refData.current = event.target.value;
+    console.log(123);
   };
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     localStorage.setItem("search", refData.current || "");
     getApi();
+    console.log(428);
   };
   useEffect(() => {
     setAppState({ loading: true });

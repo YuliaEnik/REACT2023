@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { App } from "./App";
 import { Card } from "./Components/Card";
 import { MemoryRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
@@ -46,7 +46,16 @@ describe("App", () => {
 
 describe("Card", () => {
   it("renders Card component", () => {
-    render(<Card author={""} name={""} year={""} imageNum={0} />);
+    render(
+      <Card
+        artist_title={""}
+        title={""}
+        date_display={""}
+        id={0}
+        image_id={""}
+        isActive={false}
+      />
+    );
     expect(screen.getByTestId("card")).toBeInTheDocument();
   });
 });
