@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useRef } from "react";
 import { Search } from "../../Components/Search";
 import { Card, IData } from "../../Components/Card";
@@ -38,13 +39,11 @@ export function Home(): JSX.Element {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
     refData.current = event.target.value;
-    console.log(123);
   };
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     localStorage.setItem("search", refData.current || "");
     getApi();
-    console.log(428);
   };
   useEffect(() => {
     setAppState({ loading: true });
@@ -63,6 +62,7 @@ export function Home(): JSX.Element {
     const apiUrl = `https://api.artic.edu/api/v1/artworks/${id}`;
     fetch(apiUrl)
       .then((res) => res.json())
+      .catch((error) => console.log(error))
       .then((repos) => {
         setModalState({ loading: false, repos: repos.data });
       });
@@ -80,7 +80,9 @@ export function Home(): JSX.Element {
       </ul>
       <Modal isActive={isActive} closeModal={closeModal}>
         {modalState.loading && <p className="loading">Loading...</p>}
-        <CardModal {...modalState.repos} isActive={isActive} />
+        {modalState.repos && (
+          <CardModal {...modalState.repos} isActive={isActive} />
+        )}
       </Modal>
     </div>
   );
