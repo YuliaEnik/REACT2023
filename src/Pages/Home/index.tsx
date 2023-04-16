@@ -4,51 +4,26 @@ import { Search } from "../../Components/Search";
 import { Card, IData } from "../../Components/Card";
 import { Modal } from "../../Components/Modal";
 import { CardModal } from "../../Components/CardModal";
-import { getURL } from "../../Api";
-import { IDataApi, IDataModal } from "./types";
+import { useAppDispatch, useAppSelector } from "../../Store/hooks";
+import { IDataModal } from "./types";
+import { fetchcardApiData } from "../../Store/reducers/homePageReducer";
 import "./style.scss";
 
 export function Home(): JSX.Element {
-  const [appState, setAppState] = useState<IDataApi>({
-    loading: false,
-    repos: null,
-  });
   const [modalState, setModalState] = useState<IDataModal>({
     loading: false,
     repos: null,
   });
   const [isActive, setIsActive] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState(
-    localStorage.getItem("search") || ""
+
+  const { search, cardApiData, isLoading } = useAppSelector(
+    (state) => state.homePage
   );
+  const dispatch = useAppDispatch();
 
-  const getApi = async () => {
-    setAppState({ loading: true });
-    try {
-      const repos = await getURL(searchValue);
-      setAppState({
-        loading: false,
-        repos: repos.data,
-      });
-    } catch (error) {
-      setAppState({ loading: false });
-    }
-  };
-
-  const refData = useRef(searchValue);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.currentTarget.value);
-    refData.current = event.target.value;
-  };
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    localStorage.setItem("search", refData.current || "");
-    getApi();
-  };
   useEffect(() => {
-    setAppState({ loading: true });
-    getApi();
-  }, []);
+    dispatch(fetchcardApiData(search));
+  }, [search, dispatch]);
 
   const closeModal = () => {
     setIsActive(false);
@@ -70,11 +45,11 @@ export function Home(): JSX.Element {
 
   return (
     <div className="cards-page">
-      <Search onSubmit={handleFormSubmit} onChange={handleChange} />
+      <Search />
       <ul className="cards-wrapper">
-        {appState.loading && <p className="loading">Loading...</p>}
-        {appState.repos &&
-          appState.repos.map((data: IData) => (
+        {isLoading && <p className="loading">Loading...</p>}
+        {cardApiData &&
+          cardApiData.map((data: IData) => (
             <Card {...data} key={data.id} onClick={() => openModal(data.id)} />
           ))}
       </ul>
