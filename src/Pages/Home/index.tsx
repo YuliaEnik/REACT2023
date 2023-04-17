@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "../../Components/Search";
 import { Card, IData } from "../../Components/Card";
 import { Modal } from "../../Components/Modal";
@@ -48,7 +48,8 @@ export function Home(): JSX.Element {
       <Search />
       <ul className="cards-wrapper">
         {isLoading && <p className="loading">Loading...</p>}
-        {cardApiData &&
+        {!isLoading &&
+          cardApiData &&
           cardApiData.map((data: IData) => (
             <Card {...data} key={data.id} onClick={() => openModal(data.id)} />
           ))}
