@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.05% </span>
+                <span class="strong">24.32% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/37</span>
+                <span class='fraction'>9/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.05% </span>
+                <span class="strong">24.32% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/37</span>
+                <span class='fraction'>9/37</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,13 +109,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -133,10 +126,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { PropsWithChildren } from "react";
 import "./style.scss";
 &nbsp;
@@ -145,18 +145,18 @@ export interface IModal {
   closeModal: () =&gt; void;
 }
 &nbsp;
-export const Modal = ({
-  isActive,
-  closeModal,
-  children,
-}: PropsWithChildren&lt;IModal&gt;) =&gt; {
-  return (
-    &lt;&gt;
-      {<span class="branch-0 cbranch-no" title="branch not covered" >isActive &amp;&amp; (</span>
+export const Modal = <span class="fstat-no" title="function not covered" >({</span>
+<span class="cstat-no" title="statement not covered" >  isActive,</span>
+<span class="cstat-no" title="statement not covered" >  closeModal,</span>
+<span class="cstat-no" title="statement not covered" >  children,</span>
+<span class="cstat-no" title="statement not covered" >}: PropsWithChildren&lt;IModal&gt;) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      {isActive &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className="modal-wrapper" onClick={closeModal}&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div</span>
 <span class="cstat-no" title="statement not covered" >            className="modal-content"</span>
-<span class="cstat-no" title="statement not covered" >            onClick={<span class="fstat-no" title="function not covered" >(event) =&gt; event.stopPropagation()}</span></span>
+<span class="cstat-no" title="statement not covered" >            onClick={(event) =&gt; event.stopPropagation()}</span>
 <span class="cstat-no" title="statement not covered" >          &gt;</span>
 <span class="cstat-no" title="statement not covered" >            &lt;div className="modal-header"&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;div className="btn-modal" onClick={closeModal}&gt;</span>
@@ -170,10 +170,10 @@ export const Modal = ({
 <span class="cstat-no" title="statement not covered" >            &lt;div className="modal-body"&gt;{children}&lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-      )}
-    &lt;/&gt;
-  );
-};
+<span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >};</span></span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -181,7 +181,7 @@ export const Modal = ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-11T18:47:44.248Z
+                at 2023-04-19T15:43:28.025Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

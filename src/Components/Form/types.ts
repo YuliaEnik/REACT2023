@@ -21,7 +21,7 @@ export interface IData {
   country?: string;
   gender?: string;
   agree?: string;
-  file?: string;
+  file: string;
 }
 
 export type FormData = IData[];

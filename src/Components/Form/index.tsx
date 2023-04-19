@@ -1,11 +1,14 @@
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../Button";
-import { IData, IDataForm, FormProps } from "./types";
+import { IData, IDataForm } from "./types";
+import { setCharacters, succcess } from "../../Store/reducers/formPageReducer";
+import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import "./style.scss";
+const savedMessage = "Information is saved";
 
-export function Form({ createCardList }: FormProps) {
-  const [savedMessage, setSavedMessage] = useState("");
+export function Form() {
+  const dispatch = useAppDispatch();
+  const { isSucccess } = useAppSelector((state) => state.formPage);
   const {
     register,
     handleSubmit,
@@ -13,22 +16,23 @@ export function Form({ createCardList }: FormProps) {
     formState: { errors },
   } = useForm<IDataForm>({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
+  const createCharacter = (character: IData) => {
+    dispatch(setCharacters(character));
+    setTimeout(() => {
+      dispatch(succcess());
+    }, 2000);
+    reset();
+  };
+
   const onSubmit: SubmitHandler<IDataForm> = (data) => {
-    const cardData: IData = {
+    const cardData = {
       ...data,
       file: URL.createObjectURL(data.file[0]),
       agree: "agree",
     };
-    setSavedMessage("Information has been saved");
-    setTimeout(() => {
-      setSavedMessage("");
-    }, 2000);
-
-    addCard(cardData);
-    reset();
-  };
-  const addCard = (card: IData) => {
-    createCardList(card);
+    if (cardData) {
+      createCharacter(cardData);
+    }
   };
 
   return (
@@ -43,7 +47,7 @@ export function Form({ createCardList }: FormProps) {
               className="input"
               autoComplete="off"
               {...register("name", {
-                required: 'The name should contain 1 or more letters"',
+                required: "The name should contain 1 or more letters",
               })}
             />
           </label>
@@ -149,7 +153,7 @@ export function Form({ createCardList }: FormProps) {
           )}
         </div>
         <Button>Submit</Button>
-        {savedMessage ? <p className="form-message">{savedMessage}</p> : <br />}
+        {isSucccess ? <p className="form-message">{savedMessage}</p> : <br />}
       </form>
       <div></div>
     </>

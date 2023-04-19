@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { getURL } from "../Api";
+import { getcardApiData } from "../Api";
 
 it("calls the right route", async () => {
   const cardData = {
@@ -15,7 +15,7 @@ it("calls the right route", async () => {
   });
   global.fetch = vi.fn().mockImplementation(() => mockFetch);
   vi.spyOn(global, "fetch");
-  await getURL("");
+  await getcardApiData("");
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });
 
@@ -39,7 +39,7 @@ it("getDataCat returns a product object", async () => {
   });
   global.fetch = vi.fn().mockImplementation(() => mockFetch);
 
-  const data = await getURL("");
+  const data = await getcardApiData("");
   expect(typeof data).toBe("object");
   expect(data).toHaveProperty("id");
   expect(data).toHaveProperty("title");

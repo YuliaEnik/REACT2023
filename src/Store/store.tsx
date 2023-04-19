@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import homePageSlice from "./reducers/homePageReducer";
+import formPageSlice from "./reducers/formPageReducer";
 
 export const store = configureStore({
   reducer: {
     homePage: homePageSlice,
+    formPage: formPageSlice,
   },
 });
 
