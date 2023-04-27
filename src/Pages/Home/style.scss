@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  //gap: 3rem;
 }
 .cards-wrapper {
   padding: 0 1rem;
@@ -26,4 +26,10 @@
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
+}
+.title {
+  height: 4rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  opacity: 0.8;
 }

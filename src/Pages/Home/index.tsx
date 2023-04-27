@@ -45,6 +45,7 @@ export function Home(): JSX.Element {
 
   return (
     <div className="cards-page">
+      <h3 className="title">Art Institute of Chicago</h3>
       <Search />
       <ul className="cards-wrapper">
         {isLoading && <p className="loading">Loading...</p>}
@@ -56,7 +57,7 @@ export function Home(): JSX.Element {
       </ul>
       <Modal isActive={isActive} closeModal={closeModal}>
         {modalState.loading && <p className="loading">Loading...</p>}
-        {modalState.repos && (
+        {modalState.repos && modalState.repos && (
           <CardModal {...modalState.repos} isActive={isActive} />
         )}
       </Modal>

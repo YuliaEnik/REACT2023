@@ -3,24 +3,18 @@ import "@testing-library/jest-dom";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { App } from "./App";
 import { Card } from "./Components/Card";
-////import { MemoryRouter } from "react-router-dom";
-//import { Home } from "./Pages/Home";
 import { AboutUs } from "./Pages/AboutUs";
-//import { FormPage } from "./Pages/Forms";
 import { describe, it, vi } from "vitest";
 import { Form } from "./Components/Form";
 import { CardForm } from "./Components/CardForm";
 
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-//import { NotFound } from "Pages/NotFound";
-//import userEvent from "@testing-library/user-event";
 
 const mockStore = configureStore([]);
 const initialState = {
   form: {
     characters: [],
-    //isSucccess: false,
   },
 };
 const store = mockStore(initialState);
@@ -139,14 +133,8 @@ describe("Add Card tests:", () => {
 
     expect(birthday).toBeTruthy();
     expect(month).toBe(4);
-    // expect(price.value).toBe("20000");
-    // expect(breed).toBeTruthy();
-    // expect(breed.value).toBe("Британская");
-    //expect(catterys).toBeTruthy();
-    //expect(catterys.value).toBe("Tany Mur");
     expect(sex).toBeTruthy();
     expect(sex.value).toBe("1");
-    //expect(counts).toBeTruthy();
     expect(image.files![0]).toStrictEqual(file);
 
     const submit = screen.getByRole("button", { name: "Submit" });
@@ -154,39 +142,6 @@ describe("Add Card tests:", () => {
 
     submit.click();
     expect(form).toBeTruthy();
-
-    /* const newCard: Array<ICardCatProps> = [
-      {
-        id: 1,
-        breed: breed.value,
-        price: Number(price.value),
-        sex: Number(sex.value),
-        name: name.value,
-        age: month,
-        catterys: catterys.value,
-        counts: Number(counts.value),
-      },
-    ];
-    newCard.map((card) => {
-      return (
-        // eslint-disable-next-line react/jsx-key
-        <Provider store={store}>
-          <Card key={card.id} {...card} />
-        </Provider>
-      );
-    });
-    expect(newCard.length).toBe(1);
-    expect(screen.getByText("Британская")).toBeInTheDocument();
-  });
-
-  it("Card mounted", () => {
-    render(
-      <Provider store={store}>
-        <Card key={1} {...catsData[0]} />
-      </Provider>
-    );
-    expect(screen.getByTestId("card")).toBeInTheDocument();
-  });*/
   });
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function datediff(_arg0: Date) {
