@@ -1,13 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  PreloadedState,
+  combineReducers,
+} from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import homePageSlice from "./reducers/homePageReducer";
 import formPageSlice from "./reducers/formPageReducer";
 
-export const store = configureStore({
-  reducer: {
-    homePage: homePageSlice,
-    formPage: formPageSlice,
-  },
+const reducers = combineReducers({
+  homePage: homePageSlice,
+  formPage: formPageSlice,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const createAppStore = (
+  initialState?: PreloadedState<RootState>,
+  isServer = false
+) => {
+  const store = configureStore({
+    reducer: reducers,
+    preloadedState: initialState,
+    devTools: !isServer,
+  });
+
+  setupListeners(store.dispatch);
+  return store;
+};
+export type RootState = ReturnType<typeof reducers>;
+export type AppStore = ReturnType<typeof createAppStore>;
+export type AppDispatch = AppStore["dispatch"];
