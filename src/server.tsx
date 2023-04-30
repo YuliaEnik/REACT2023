@@ -1,9 +1,14 @@
 import { StrictMode } from "react";
 import { renderToPipeableStream } from "react-dom/server";
-import { createAppStore } from "./Store/store";
+import { RootState, createAppStore } from "./Store/store";
 import { StaticRouter } from "react-router-dom/server";
 import { Response } from "express";
 import { Provider as ReduxProvider } from "react-redux";
+import { getCardDataServer } from "Api";
+import { App } from "App";
+
+import { initialState as forms } from "./Store/reducers/formPageReducer";
+import { initialState as home } from "./Store/reducers/homePageReducer";
 
 const getAppStateTemplate = (state: object) => {
   const stringifiedAppState = `
@@ -29,17 +34,16 @@ const getTemplateParts = (template: string, state: object) => {
 };
 
 export const render = (url: string, res: Response, template: string) => {
-  getCatFetchServer((apiResult) => {
+  getCardDataServer((apiResult) => {
     const preloadedState: RootState = {
       card: {
         search: "",
-        items: apiResult || [],
+        cardApiData: [],
         isLoading: false,
-        isError: false,
+        errorMsg: "",
       },
-      modal: initModal,
-      form: initForms,
-      header: initHeader,
+      form: forms,
+      home: home,
     };
 
     const store = createAppStore(preloadedState, true);

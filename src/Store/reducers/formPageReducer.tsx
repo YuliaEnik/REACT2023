@@ -6,7 +6,7 @@ type FormType = {
   isSucccess: boolean;
 };
 
-const initialState: FormType = {
+export const initialState: FormType = {
   characters: [],
   isSucccess: false,
 };

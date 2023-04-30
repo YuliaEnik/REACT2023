@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { App } from "./App";
 import { hydrateRoot } from "react-dom/client";
 import "./index.css";
+import { createAppStore } from "Store/store";
 
 const store = createAppStore(window.__PRELOADED_STATE__);
 delete window.__PRELOADED_STATE__;

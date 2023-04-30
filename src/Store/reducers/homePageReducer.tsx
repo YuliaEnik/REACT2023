@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getcardApiData } from "../../Api";
 import { IDataApi } from "../../Pages/Home/types";
 
-const initialState: IDataApi = {
+export const initialState: IDataApi = {
   search: "",
   cardApiData: [],
   isLoading: false,

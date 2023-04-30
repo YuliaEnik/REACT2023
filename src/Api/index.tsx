@@ -28,3 +28,20 @@ export const getcardApiData = async (
   }
   throw new Error();
 };
+
+export const getCardDataServer = (callback: (apiResult: IData[]) => void) => {
+  const link = `${path}/catalog`;
+
+  fetch(link, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      callback(data);
+    })
+    .catch(() => callback([]));
+};
