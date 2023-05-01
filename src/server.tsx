@@ -3,7 +3,7 @@ import { renderToPipeableStream } from "react-dom/server";
 import { RootState, createAppStore } from "./Store/store";
 import { StaticRouter } from "react-router-dom/server";
 import { Response } from "express";
-import { Provider as ReduxProvider } from "react-redux";
+import { Provider } from "react-redux";
 import { getCardDataServer } from "Api";
 import { App } from "App";
 
@@ -50,9 +50,9 @@ export const render = (url: string, res: Response, template: string) => {
     const { pipe } = renderToPipeableStream(
       <StrictMode>
         <StaticRouter location={url}>
-          <ReduxProvider store={store}>
+          <Provider store={store}>
             <App />
-          </ReduxProvider>
+          </Provider>
         </StaticRouter>
       </StrictMode>,
       {

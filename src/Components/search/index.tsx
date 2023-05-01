@@ -9,7 +9,7 @@ export interface ISearch {
 }
 
 export function Search() {
-  const search = useAppSelector((state) => state.homePage.search);
+  const search = useAppSelector((state) => state.home.search);
   const dispatch = useAppDispatch();
   const searchStringRef = useRef<HTMLInputElement>(null);
 

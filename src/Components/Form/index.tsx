@@ -8,7 +8,7 @@ const savedMessage = "Information is saved";
 
 export function Form() {
   const dispatch = useAppDispatch();
-  const { isSucccess } = useAppSelector((state) => state.formPage);
+  const { isSucccess } = useAppSelector((state) => state.form);
   const {
     register,
     handleSubmit,

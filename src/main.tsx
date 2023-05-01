@@ -4,6 +4,7 @@ import { App } from "./App";
 import { hydrateRoot } from "react-dom/client";
 import "./index.css";
 import { createAppStore } from "./Store/store";
+import { BrowserRouter } from "react-router-dom";
 
 const store = createAppStore(window.__PRELOADED_STATE__);
 delete window.__PRELOADED_STATE__;
@@ -14,11 +15,12 @@ window.addEventListener("load", () => {
 
 hydrateRoot(
   document.getElementById("root") as HTMLElement,
-
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
