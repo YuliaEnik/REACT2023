@@ -6,7 +6,7 @@ import "./style.scss";
 export type FormCardsProps = { cards: FormData };
 
 export function FormCardList() {
-  const { characters } = useAppSelector((state) => state.formPage);
+  const { characters } = useAppSelector((state) => state.form);
   return (
     <div className="card-list-wrapper">
       {characters.map((card, index) => (

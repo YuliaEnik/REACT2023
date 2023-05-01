@@ -155,7 +155,6 @@ export function Form() {
         <Button>Submit</Button>
         {isSucccess ? <p className="form-message">{savedMessage}</p> : <br />}
       </form>
-      <div></div>
     </>
   );
 }
