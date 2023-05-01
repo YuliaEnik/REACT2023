@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getcardApiData } from "../../Api";
+import { getCardApiData } from "../../Api";
 import { IDataApi } from "../../Pages/Home/types";
 
 export const initialState: IDataApi = {
@@ -8,11 +8,11 @@ export const initialState: IDataApi = {
   isLoading: false,
   errorMsg: "",
 };
-export const fetchcardApiData = createAsyncThunk(
+export const fetchCardApiData = createAsyncThunk(
   "cardApiData/fetch",
-  async (search: string, thunkAPI) => {
+  async (search?: string, thunkAPI?) => {
     try {
-      const cardApiData = await getcardApiData(search);
+      const cardApiData = await getCardApiData(search);
       return cardApiData;
     } catch (error) {
       return thunkAPI.rejectWithValue(`${error}: No results`);
@@ -30,15 +30,15 @@ export const homePageSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchcardApiData.fulfilled, (state, action) => {
+      .addCase(fetchCardApiData.fulfilled, (state, action) => {
         state.cardApiData = action.payload;
         state.isLoading = false;
         state.errorMsg = "";
       })
-      .addCase(fetchcardApiData.pending, (state) => {
+      .addCase(fetchCardApiData.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchcardApiData.rejected, (state, action) => {
+      .addCase(fetchCardApiData.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMsg = action.payload as string;
       });

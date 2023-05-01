@@ -3,7 +3,7 @@ import { IData } from "../Components/Card";
 let path =
   "https://api.artic.edu/api/v1/artworks?fields=id,title,artist_title,date_display,image_id";
 
-export const getcardApiData = async (
+export const getCardApiData = async (
   search?: string,
   id?: number
 ): Promise<IData[]> => {
@@ -30,7 +30,7 @@ export const getcardApiData = async (
 };
 
 export const getCardDataServer = (callback: (apiResult: IData[]) => void) => {
-  const link = `${path}/catalog`;
+  const link = `${path}`;
 
   fetch(link, {
     method: "GET",

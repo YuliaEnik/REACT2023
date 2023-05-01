@@ -6,7 +6,7 @@ import { Modal } from "../../Components/Modal";
 import { CardModal } from "../../Components/CardModal";
 import { useAppDispatch, useAppSelector } from "../../Store/hooks";
 import { IDataModal } from "./types";
-import { fetchcardApiData } from "../../Store/reducers/homePageReducer";
+import { fetchCardApiData } from "../../Store/reducers/homePageReducer";
 import "./style.scss";
 
 export function Home(): JSX.Element {
@@ -22,8 +22,12 @@ export function Home(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchcardApiData(search));
+    if (cardApiData.length === 0) dispatch(fetchCardApiData(search));
   }, [search, dispatch]);
+
+  /* useEffect(() => {
+    if (cardApiData.length === 0) dispatch(fetchcardApiData(search));
+  }, [search, cardApiData.length]); */
 
   const closeModal = () => {
     setIsActive(false);
