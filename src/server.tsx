@@ -34,16 +34,10 @@ const getTemplateParts = (template: string, state: object) => {
 };
 
 export const render = (url: string, res: Response, template: string) => {
-  getCardDataServer((apiResult) => {
+  getCardDataServer((/* apiResult */) => {
     const preloadedState: RootState = {
-      card: {
-        search: "",
-        cardApiData: [],
-        isLoading: false,
-        errorMsg: "",
-      },
-      form: forms,
       home: home,
+      form: forms,
     };
 
     const store = createAppStore(preloadedState, true);

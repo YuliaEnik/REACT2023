@@ -17,7 +17,7 @@ export function Home(): JSX.Element {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const { search, cardApiData, isLoading } = useAppSelector(
-    (state) => state.homePage
+    (state) => state.home
   );
   const dispatch = useAppDispatch();
 

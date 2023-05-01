@@ -8,8 +8,8 @@ import homePageSlice from "./reducers/homePageReducer";
 import formPageSlice from "./reducers/formPageReducer";
 
 const reducers = combineReducers({
-  homePage: homePageSlice,
-  formPage: formPageSlice,
+  home: homePageSlice,
+  form: formPageSlice,
 });
 
 export const createAppStore = (
